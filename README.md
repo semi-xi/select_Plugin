@@ -10,4 +10,8 @@ this.config={
                sameVfn:function(){//改变值 不改变值  
                    console.log('value is not change');  
                }  
+<<<<<<< HEAD
            };  
+=======
+           };  
+>>>>>>> origin/master
