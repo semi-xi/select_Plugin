@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+div{
+    position: relative;
+}
 .slect-plugin-box{
     position: relative;
     width: 126px;

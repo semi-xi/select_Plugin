@@ -6,32 +6,53 @@
     <link rel="stylesheet" href="select-plugin.css">
     <script src="jquery.min.js" type="text/javascript"></script>
    <script src="select_plugin.js" type="text/javascript"></script>
+   <style>
+    .J_select{
+        margin-bottom: 50px;
+    }
+    </style>
 </head>
 <body>
-    <div id="select">
-        <select name="" id="" class="hide">
+    <div class="J_select">
+        <select name="" id="" class="">
             <option value="">1</option>
             <option value="">2</option>
             <option value="">3</option>
             <option value="">4</option>
         </select>
-<!--
-        <div class="slect-plugin-box">
-                <span class="s-plugin--show">5</span><i class="s-plugin--icon"></i>
-                <ul class="s-plugin--select">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                </ul>
-        </div>
--->
+    </div>
+    <div class="J_select">
+        <select name="" id="" class="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+        </select>
+    </div>
+       <div class="J_select">
+        <select name="" id="" class="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+        </select>
+    </div>
+       <div class="J_select">
+        <select name="" id="" class="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+        </select>
+    </div>
+    <div>
+        <span></span><label for="">单选1</label> <input type="radio" name="" id="">
     </div>
 </body>
 <script type="text/javascript">
 //    $.fn.selectPlugin();
     var select=new selectPlugin({
-        ele:'#select'
+        ele:'.J_select'
     });
     </script>
 </html>
