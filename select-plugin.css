@@ -57,3 +57,31 @@ div{
 .hide{
     display: none;
 }
+
+
+/* radio */
+.formPlugin__radioIcon{
+    display: inline-block;
+    width: 40px;
+    height:40px;
+    background-image: url(radio.png);
+    vertical-align: middle;
+}
+.formPlugin__radioIcon.selected{
+    background-image: url(radio2.png);
+}
+label,input{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.checkboxIcon{
+    display: inline-block;
+    background-image: url(checkbox.png);
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+.checkboxIcon.selected{
+    background-image: url(checkbox2.png);
+}

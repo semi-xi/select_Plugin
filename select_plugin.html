@@ -45,14 +45,54 @@
             <option value="">4</option>
         </select>
     </div>
-    <div>
-        <span></span><label for="">单选1</label> <input type="radio" name="" id="">
+    <div class="radio">
+        <label for="">单选1</label> <input type="radio" name="radio1" id="">
+        <label for="">单选2</label> <input type="radio" name="radio1" id="">
+        <label for="">单选3</label> <input type="radio" name="radio1" id="">
+    </div>
+    <div class="radio">
+        <label for="">单选4</label> <input type="radio" name="radio2" id="" checked>
+        <label for="">单选5</label> <input type="radio" name="radio2" id="">
+        <label for="">单选6</label> <input type="radio" name="radio2" id="">
+    </div>
+    <div class="checkbox">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="" >
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+        <label for="">多选一</label> <input type="checkbox" name="checkbox1" id="">
+    </div>
+    <div class="checkbox">
+           <label for="">单选4</label> <input type="checkbox" name="checkbox2" id="">
+        
+        <label for="">单选5</label> <input type="checkbox" name="checkbox2" id="">
+        <label for="">单选6</label> <input type="checkbox" name="checkbox2" id="">
+        <label for="">单选5</label> <input type="checkbox" name="checkbox2" id="">
+        <label for="">单选6</label> <input type="checkbox" name="checkbox2" id="">
     </div>
 </body>
 <script type="text/javascript">
 //    $.fn.selectPlugin();
     var select=new selectPlugin({
-        ele:'.J_select'
+        ele:'.J_select',
+        type:'select',
     });
+    
+    var radio=new selectPlugin({
+        ele:'.radio',
+        type:'radio',
+        iconClass:'formPlugin__radioIcon',
+        radioBox:'radio-box'
+    })
+    
+    var checkbox=new selectPlugin({
+        ele:'.checkbox',
+        type:'checkbox',
+        iconClass:'checkboxIcon',
+        checkBox:'check-box'
+        
+    })
     </script>
 </html>

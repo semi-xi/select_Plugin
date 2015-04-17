@@ -2,11 +2,13 @@
     window.selectPlugin = function (arg) {
         this.ops = {
             ele: '.J_select', // select 盒子样式
-            type:'select',
+            type:'',
             showClass: 's-plugin--show', //左边显示值的样式
             iconClass: 's-plugin--icon', //右边icon的样式
             selectGroupClass: 's-plugin--select', // 下拉box的样式
             selectedClass: "selected", //选中的样式
+            radioBox:'selectPlugin__radio',
+            checkBox:'selectPlugin__checkbox',
             changeVfn: function () { //改变值
                 console.log('value is change');
             },
@@ -27,8 +29,8 @@
         if(this.ops.type){
             switch(this.ops.type){
                 case 'select':     _self.createSelect();break;
-                    case 'radop' :  _self.createRadio();break;
-                    case 'checkbox': _self.createCheckbox;break;
+                    case 'radio' :  _self.createRadio();break;
+                    case 'checkbox': _self.createCheckbox();break;
                     default: console.log('这是一个错误的type');
             }
         } else{
@@ -36,6 +38,7 @@
             return ;
         }
     };
+    //创建下拉选择
     selectPlugin.prototype.createSelect=function(){
          var _self = this;
         var ele = this.ele;
@@ -65,11 +68,8 @@
                     $(this).parent().siblings('.' + _self.ops.showClass).html(this.innerHTML);
                     _self.hide(parentIndex);
                     var oldVal = $(_this_option).parent().children().eq($(_this_option).parent()[0].selectedIndex).html();
-                    //               console.log(oldVal);
                     _this_option.parentNode.selectedIndex = $(_this_option).index();
-                    //is change
                     _self.isChange(oldVal, this.innerHTML);
-                    //               console.log($(_this_option).index())
                 });
                 select_valList.on('mouseenter', function () {
                     $(this).addClass(_self.ops.selectedClass).siblings().removeClass(_self.ops.selectedClass);
@@ -78,12 +78,69 @@
         })
         _self.clickFn();
     }
+    
+    //创建单选框
     selectPlugin.prototype.createRadio=function(){
-        
+        var ele=this.ele;
+        var _self=this;
+        ele.each(function(index,element){
+            $(element).find('label').each(function(index,labelEle){
+                  $(this).css({
+                     verticalAlign:'middle'
+                 })
+                var radioBox=$('<div class='+_self.ops.radioBox+'></div>');
+                var radioInput=$(labelEle).parent().find('input[type="radio"]').eq(0) //每次append都会少1个
+                var isChecked=radioInput.attr('checked') ? 'selected' : ' ';
+                var radioIcon=$('<span class="'+_self.ops.iconClass+' '+isChecked+'" data-type="radio"></span>');
+                radioIcon.css({
+                     display:'inline-block',
+                     verticalAlign:'middle'
+                 })
+                
+                radioBox.append(radioIcon).append($(this)).append(radioInput)
+                $(element).append(radioBox)
+            });
+            $(element).find('.'+_self.ops.iconClass+',label').on('click',function(){
+                $(this).parent().find('span[data-type='+_self.ops.type+']').addClass(_self.ops.selectedClass).parent().siblings().find('span[data-type='+_self.ops.type+']').removeClass(_self.ops.selectedClass)
+                $(this).siblings('input').get(0).checked=true;
+            })
+        })
     }
+    //创建复选框
     selectPlugin.prototype.createCheckbox=function(){
-        
+        var _self=this;
+        var ele=this.ele;
+        ele.each(function(index,element){
+            
+             $(element).find('label').each(function(index,labelEle){
+                 $(this).css({
+                     verticalAlign:'middle'
+                 })
+                 var checkBox=$('<div class="'+_self.ops.checkBox+'">');
+                 var checkboxInput=$(labelEle).parent().find('input[type="checkbox"]').eq(0) //每次append都会少1个
+                var isChecked=checkboxInput.attr('checked') ? 'selected' : ' ';
+                var checkboxIcon=$('<span class="'+_self.ops.iconClass+' '+isChecked+'" data-type="checkbox"></span>');
+                 checkboxIcon.css({
+                     display:'inline-block',
+                     verticalAlign:'middle'
+                 })
+                 checkBox.append(checkboxIcon).append($(this)).append(checkboxInput)
+                 $(element).append(checkBox);
+             })
+              $(element).find('.'+_self.ops.iconClass+',label').on('click',function(){
+                  var checkboxStatus=$(this).parent().find('.'+_self.ops.iconClass).hasClass(_self.ops.selectedClass);
+                  if(checkboxStatus){
+                      $(this).parent().find('.'+_self.ops.iconClass).removeClass(_self.ops.selectedClass)
+                        $(this).siblings('input').get(0).checked=false;
+                  } else{
+                      $(this).parent().find('.'+_self.ops.iconClass).addClass(_self.ops.selectedClass)
+                       $(this).siblings('input').get(0).checked=true;
+                 }
+              
+            })
+        })
     }
+    //下拉选择的点击
     selectPlugin.prototype.clickFn = function () {
         var ele = this.ele;
         var _self = this;
@@ -110,16 +167,19 @@
             }
         });
     };
+    //显示
     selectPlugin.prototype.show = function (index) {
         var ele = this.ele;
         ele.find('.' + this.ops.selectGroupClass).hide().eq(index).show();
         ele.find('.select-plugin-box').attr('data-state', 0).css('zIndex',1).eq(index).attr('data-state', 1).css('zIndex',999);
     };
+    //隐藏
     selectPlugin.prototype.hide = function (index) {
         var ele = this.ele;
         ele.find('.' + this.ops.selectGroupClass).eq(index).hide();
         ele.find('.select-plugin-box').eq(index).attr('data-state', 0).css('zIndex',1);
     };
+    //判断是否改变
     selectPlugin.prototype.isChange = function (oldV, newV) {
         var _self = this;
         if (oldV != newV) {
@@ -128,4 +188,13 @@
             _self.ops.sameVfn && _self.ops.sameVfn();
         }
     };
+    //找到节点的排序
+    selectPlugin.prototype.findEleIndex=function(selector){
+        var index=-1;
+        $(selector).parent().find(selector.tagName).each(function(idx,ele){
+            if($(selector)[0]==ele)
+                index= idx
+        })
+        return index;
+    }
 })(jQuery);
