@@ -43,7 +43,7 @@
          var _self = this;
         var ele = this.ele;
         ele.each(function (index, attr) {
-            $(element).find('input[type="select"]').hide();
+            $(attr).find('input[type="select"]').hide();
             var parentIndex=index;
             var default_index = $(attr).find('select')[0].selectedIndex;
 
@@ -112,7 +112,7 @@
     selectPlugin.prototype.createCheckbox=function(){
         var _self=this;
         var ele=this.ele;
-        $(element).find('input[type="checkbox"]').hide();
+        $(ele).find('input[type="checkbox"]').hide();
         ele.each(function(index,element){
              $(element).find('label').each(function(index,labelEle){
                  $(this).css({
