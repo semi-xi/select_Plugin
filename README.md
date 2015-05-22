@@ -1,5 +1,9 @@
+```  config
 this.config={  
                ele:'.J_select',  // select 盒子样式  
+               type:'', //select radio checkbox
+               radioBox:'', radioBox
+               checkBox:'', checkBox
                showClass:'s-plugin--show', //左边显示值的样式  
                iconClass:'s-plugin--icon',  //右边icon的样式  
                 selctGroupClass:'s-plugin--select',  // 下拉box的样式  
@@ -10,8 +14,4 @@ this.config={
                sameVfn:function(){//改变值 不改变值  
                    console.log('value is not change');  
                }  
-<<<<<<< HEAD
-           };  
-=======
-           };  
->>>>>>> origin/master
+``` 

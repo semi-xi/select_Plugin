@@ -43,6 +43,7 @@
          var _self = this;
         var ele = this.ele;
         ele.each(function (index, attr) {
+            $(element).find('input[type="select"]').hide();
             var parentIndex=index;
             var default_index = $(attr).find('select')[0].selectedIndex;
 
@@ -78,12 +79,13 @@
         })
         _self.clickFn();
     }
-    
+
     //创建单选框
     selectPlugin.prototype.createRadio=function(){
         var ele=this.ele;
         var _self=this;
         ele.each(function(index,element){
+            $(element).find('input[type="radio"]').hide();
             $(element).find('label').each(function(index,labelEle){
                   $(this).css({
                      verticalAlign:'middle'
@@ -96,7 +98,7 @@
                      display:'inline-block',
                      verticalAlign:'middle'
                  })
-                
+
                 radioBox.append(radioIcon).append($(this)).append(radioInput)
                 $(element).append(radioBox)
             });
@@ -110,8 +112,8 @@
     selectPlugin.prototype.createCheckbox=function(){
         var _self=this;
         var ele=this.ele;
+        $(element).find('input[type="checkbox"]').hide();
         ele.each(function(index,element){
-            
              $(element).find('label').each(function(index,labelEle){
                  $(this).css({
                      verticalAlign:'middle'
@@ -136,7 +138,7 @@
                       $(this).parent().find('.'+_self.ops.iconClass).addClass(_self.ops.selectedClass)
                        $(this).siblings('input').get(0).checked=true;
                  }
-              
+
             })
         })
     }
